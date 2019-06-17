@@ -30,90 +30,111 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
-  {
-    path: '/addUser',
-    component: () => import('@/views/addUser/index'),
-    hidden: true
-  },
-  {
-    path: '/queryOrder',
-    component: () => import('@/views/queryOrder/index'),
-    hidden: true
-  },
-  {
-    path: '/order',
-    component: () => import('@/views/order/index'),
-    hidden: true
-  },
+export const constantRoutes = [{
+  path: '/login',
+  component: () => import('@/views/login/index'),
+  hidden: true
+},
+{
+  path: '/addUser',
+  component: () => import('@/views/addUser/index'),
+  hidden: true
+},
+{
+  path: '/queryOrder',
+  component: () => import('@/views/queryOrder/index'),
+  hidden: true
+},
+{
+  path: '/order',
+  component: () => import('@/views/order/index'),
+  hidden: true
+},
 
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
+{
+  path: '/404',
+  component: () => import('@/views/404'),
+  hidden: true
+},
 
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard' }
-    }]
+{
+  path: '/',
+  component: Layout,
+  redirect: '/dashboard',
+  children: [{
+    path: 'dashboard',
+    name: 'Dashboard',
+    component: () => import('@/views/dashboard/index'),
+    meta: {
+      title: '首页',
+      icon: 'dashboard'
+    }
+  }]
+},
+{
+  path: '/user',
+  component: Layout,
+  redirect: '/user/user',
+  name: '用户管理',
+  meta: {
+    title: '用户管理',
+    icon: ''
   },
-  {
-    path: '/user',
-    component: Layout,
-    redirect: '/user/user',
+  children: [{
+    path: 'user',
     name: '用户管理',
-    meta: { title: '用户管理', icon: '' },
-    children: [
-      {
-        path: 'user',
-        name: '用户管理',
-        component: () => import('@/views/user/index'),
-        meta: { title: '用户管理', icon: '' }
-      },
-      {
-        path: 'push',
-        name: '推送管理',
-        component: () => import('@/views/push/index'),
-        meta: { title: '推送管理', icon: '' }
-      }
-    ]
+    component: () => import('@/views/user/index'),
+    meta: {
+      title: '用户管理',
+      icon: ''
+    }
   },
   {
-    path: '/permissions',
-    component: Layout,
-    redirect: '/permissions/permissions',
-    name: 'permissions',
-    meta: { title: '权限管理', icon: '' },
-    children: [
-      {
-        path: '/permissions',
-        name: 'permissions',
-        component: () => import('@/views/permissions/index'),
-        meta: { title: '权限管理', icon: '' }
-      }
-    ]
+    path: 'push',
+    name: '推送管理',
+    component: () => import('@/views/push/index'),
+    meta: {
+      title: '推送管理',
+      icon: ''
+    }
+  }
+  ]
+},
+{
+  path: '/permissions',
+  component: Layout,
+  redirect: '/permissions/permissions',
+  name: 'permissions',
+  meta: {
+    title: '权限管理',
+    icon: ''
   },
+  children: [{
+    path: '/permissions',
+    name: 'permissions',
+    component: () => import('@/views/permissions/index'),
+    meta: {
+      title: '权限管理',
+      icon: ''
+    }
+  }]
+},
 
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+// 404 page must be placed at the end !!!
+{
+  path: '*',
+  redirect: '/404',
+  hidden: true
+}
 ]
 
 const createRouter = () => new Router({
   mode: 'history',
+  base: '/project-web/admin/',
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRoutes
 })
 

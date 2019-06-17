@@ -97,8 +97,8 @@ export default {
     return {
       authCode: '',
       loginForm: {
-        username: 'admin',
-        password: '123456',
+        username: '',
+        password: '',
         authCode: ''
       },
       loginRules: {
@@ -153,7 +153,6 @@ export default {
               this.loading = false
             })
         } else {
-          console.log('error submit!!')
           return false
         }
       })
