@@ -1,10 +1,25 @@
+export const form = () => {
+  return {
+    orderContent: [{
+      title: ''
+    }],
+    address: '',
+    logistics: '',
+    logisticsNumber: '',
+    orderConsignee: '',
+    orderMobile: '',
+    orderRemark: '',
+    personHandling: '李国裕',
+    personHandlingMobile: '02029138489',
+    userId: 0
+  }
+}
 export default {
   name: 'user',
   mounted() {
     this.init()
   },
-  watch: {
-  },
+  watch: {},
   components: {},
   computed: {
     // 搜索条件的参数
@@ -29,18 +44,7 @@ export default {
         userName: '',
         userMobile: ''
       },
-      form: {
-        orderContent: [{ title: '' }],
-        address: '',
-        logistics: '',
-        logisticsNumber: '',
-        orderConsignee: '',
-        orderMobile: '',
-        orderRemark: '',
-        personHandling: '李国裕',
-        personHandlingMobile: '02029138489',
-        userId: 0
-      },
+      form: form(),
       page: {
         total: 0,
         pageSize: 10,
@@ -78,20 +82,12 @@ export default {
     },
     handleClick(row) {
       this.dialogVisible = true
-      this.form = Object.assign({}, this.form, {
-        orderContent: [{ title: '' }],
-        address: '',
-        logistics: '',
-        logisticsNumber: '',
-        orderConsignee: row.userName,
-        orderMobile: row.userMobile,
-        orderRemark: '',
-        personHandling: '李国裕',
-        personHandlingMobile: '02029138489',
-        userId: row.id
-      })
       setTimeout(() => {
         this.$refs.form.resetFields()
+        this.form = form()
+        this.form.orderConsignee = row.userName
+        this.form.orderMobile = row.userMobile
+        this.form.userId = row.id
       }, 100)
     },
     sure() {

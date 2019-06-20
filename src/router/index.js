@@ -129,7 +129,7 @@ export const constantRoutes = [{
 ]
 
 const createRouter = () => new Router({
-  mode: 'history',
+  // mode: 'history',
   base: '/project-web/admin/',
   // mode: 'history', // require service support
   scrollBehavior: () => ({

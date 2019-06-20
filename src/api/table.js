@@ -2,10 +2,11 @@ import request from '@/utils/request'
 /**
  * 获取用户信息
  */
-export function getUserList1() {
+export function getUserList1(params) {
   return request({
     url: '/daAdmin/getUserList1',
-    method: 'get'
+    method: 'get',
+    params
   })
 }
 export function getAdminUser(params) {
