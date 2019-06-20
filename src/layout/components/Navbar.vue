@@ -55,7 +55,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout').then(res => {
-        window.location.href = '/login?redirect=${this.$route.fullPath}'
+        window.location.href = `/login?redirect=${this.$route.fullPath}`
       })
     },
     changePwd() {

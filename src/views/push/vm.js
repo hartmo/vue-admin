@@ -3,8 +3,7 @@ export default {
   mounted() {
     this.init()
   },
-  watch: {
-  },
+  watch: {},
   components: {},
   computed: {
     // 搜索条件的参数
@@ -34,7 +33,9 @@ export default {
         orderConsignee: ''
       },
       form: {
-        orderContent: [{ title: '' }],
+        orderContent: [{
+          title: ''
+        }],
         address: '',
         logistics: '',
         logisticsNumber: '',
@@ -61,6 +62,8 @@ export default {
   methods: {
     init() {
       this.loading = true
+      this.page.pageIndex = 1
+      this.page.pageSize = 10
       this.$api('table/getOrderList', this.searchParam).then(res => {
         this.list = res.data
         this.page.total = res.data.length

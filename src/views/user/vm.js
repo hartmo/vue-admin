@@ -60,6 +60,8 @@ export default {
   },
   methods: {
     init() {
+      this.page.pageIndex = 1
+      this.page.pageSize = 10
       this.loading = true
       this.$api('table/getUserList1', this.searchParam).then(res => {
         this.list = res.data
